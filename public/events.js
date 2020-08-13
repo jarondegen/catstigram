@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                     del.setAttribute('class', 'Delete');
                     del.setAttribute("style", "text-align:right")
                     del.setAttribute('id', i)
-                    del.innerHTML = "Delete";
+                    del.innerHTML = "delete";
                     newComment.innerHTML = `${comment} --- ${getTime()} ---`;
                     newComment.appendChild(del);
                     ul.appendChild(newComment);
@@ -146,13 +146,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         div.appendChild(ul)
                         res.comments.forEach((comment, i) => {
                             let newComment = document.createElement('li')
-                            newComment.setAttribute('class', i)
                             let del = document.createElement('button');
                             del.setAttribute('class', 'Delete');
-                            del.innerHTML = "Delete";
-                            newComment.innerHTML = comment
-                            ul.appendChild(newComment);
+                            del.setAttribute("style", "text-align:right")
+                            del.setAttribute('id', i)
+                            del.innerHTML = "delete";
+                            newComment.innerHTML = `${comment} --- ${getTime()} ---`;
                             newComment.appendChild(del);
+                            ul.appendChild(newComment);
                         })
                         document.getElementById("user-comment").value = '';
                     }).catch(err => {

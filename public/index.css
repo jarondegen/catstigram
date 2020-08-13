@@ -6,6 +6,30 @@ body{
   margin: 0%;
   color: white;
 }
+/* body::-webkit-scrollbar {
+  width: 11px;
+  scrollbar-color: white darkgoldenrod;
+} */
+body::-webkit-scrollbar,
+.comments::-webkit-scrollbar {
+  width: 11px;
+}
+body, .comments {
+  scrollbar-width: thin;
+  scrollbar-color:burlywood darkgoldenrod;
+}
+body::-webkit-scrollbar-track, 
+.comments::-webkit-scrollbar-track {
+  background:burlywood;
+}
+body::-webkit-scrollbar-thumb,
+.comments::-webkit-scrollbar-thumb {
+  background-color: rgb(184, 134, 11, 0.3) ;
+  border-radius: 6px;
+  /* border: 1px solid lightgrey; */
+  /* opacity: .5; */
+}
+
 
 .container {
   display: flex;
@@ -67,6 +91,8 @@ body{
 
 .user-comment-container {
   margin-right: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -85,12 +111,16 @@ body{
 }
 
 .comments {
-  border: solid grey 1px;
-  height: 400px;
+  z-index: 5;
+  /* border: solid grey 1px; */
+  height: 300px;
   width: 80%;
   margin: 10px;
   padding: 5px;
-  /* overflow: scroll; */
+  overflow: scroll;
+  scrollbar-color: white darkgoldenrod;
+  background-color:rgb(184, 134, 11, 0.3);
+  /* opacity: .2; */
 }
 
 #title {
