@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", (e)=> {
+document.addEventListener("DOMContentLoaded", (e) => {
     fetch("/kitten/image")
         .then(obj => {
-            if(!obj.ok){
+            if (!obj.ok) {
                 throw obj;
             }
             return obj.json();
@@ -11,84 +11,91 @@ document.addEventListener("DOMContentLoaded", (e)=> {
         })
         .catch(error => {
             error.json()
-            .then(err=> { 
-                document.querySelector(".error")
-                    .innerHTML = err.message;
-            })
+                .then(err => {
+                    document.querySelector(".error")
+                        .innerHTML = err.message;
+                })
         })
-        
+
     document.getElementById('new-pic')
         .addEventListener('click', (e) => {
             document.querySelector('.error').innerHTML = '';
-            document.querySelector('.loader')     
-            .innerHTML = "Loading...";
+            document.querySelector('.loader')
+                .innerHTML = "Loading...";
             fetch("/kitten/image")
-            .then(obj => {
-                if (!obj.ok) {
-                    throw obj;
-                }
-                return obj.json()
-            })
-            .then(obj => {
-                document.getElementById("catpic")
-                .setAttribute('src', obj.src);
-                document.querySelector('.loader')
-                    .innerHTML = "<br>";
-            }).catch(error => {
-                error.json()
-                .then(error => {
-                    document.querySelector('.error')
-                    .innerHTML = error.message;
+                .then(obj => {
+                    if (!obj.ok) {
+                        throw obj;
+                    }
+                    return obj.json()
                 })
-            })
+                .then(obj => {
+                    document.getElementById("catpic")
+                        .setAttribute('src', obj.src);
+                    document.querySelector('.loader')
+                        .innerHTML = "<br>";
+                    document.querySelector('.score').innerHTML = 0;
+                    document.getElementById("cc").innerHTML = ""
+                }).catch(error => {
+                    error.json()
+                        .then(error => {
+                            document.querySelector('.error')
+                                .innerHTML = error.message;
+                        })
+                })
         })
-        
+
     let options = {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         }
     }
+    
     document.getElementById('upvote')
         .addEventListener('click', (e) => {
-              fetch('/kitten/upvote', options)
-              .then(res => {
-                  if (!res.ok) {
-                      alert('something went wrong!')
+            fetch('/kitten/upvote', options)
+                .then(res => {
+                    if (!res.ok) {
+                        alert('something went wrong!')
                     }
-                return res.json()})
-              .then(obj => {
-                document.querySelector('.score').innerHTML = obj.score;
-              })
+                    return res.json()
+                })
+                .then(obj => {
+                    document.querySelector('.score').innerHTML = obj.score;
+                })
 
         })
-    document.getElementById('downvote')
+    
+        document.getElementById('downvote')
         .addEventListener('click', (e) => {
             fetch('/kitten/downvote', options)
-            .then(res => {
-                if(!res.ok){
-                    alert("Something went Wrong");
-                }
-                return res.json();
-            })
-            .then(res => {
-                document.querySelector('.score').innerHTML = res.score
-            })
+                .then(res => {
+                    if (!res.ok) {
+                        alert("Something went Wrong");
+                    }
+                    return res.json();
+                })
+                .then(res => {
+                    document.querySelector('.score').innerHTML = res.score
+                })
         });
+    
     let form = document.querySelector(".comment-form")
     let submitButton = document.getElementById("submit-button")
     submitButton.addEventListener('click', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
         let comment = formData.get('user-comment');
-        let JSONComment = JSON.stringify({comment: comment});
+        let JSONComment = JSON.stringify({ comment: comment });
         let commentOptions = {
             method: 'POST',
-            headers:{
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSONComment
         };
+        
         fetch('/kitten/comments', commentOptions)
             .then(res => {
                 if (!res.ok) {
@@ -107,7 +114,7 @@ document.addEventListener("DOMContentLoaded", (e)=> {
                     del.setAttribute("style", "text-align:right")
                     del.setAttribute('id', i)
                     del.innerHTML = "Delete";
-                    newComment.innerHTML = `${comment} --- `;
+                    newComment.innerHTML = `${comment} --- ${getTime()} ---`;
                     newComment.appendChild(del);
                     ul.appendChild(newComment);
                 })
@@ -116,47 +123,60 @@ document.addEventListener("DOMContentLoaded", (e)=> {
     })
 
     document.querySelector(".comments")
-    .addEventListener('click', (e) =>{
-        let button = e.target;
-        if (button.tagName === 'BUTTON') {
-        
-        let delComment = button.getAttribute("id")
-        console.log(delComment)
-        // let JSONDelComment = JSON.stringify(delComment)
-        let delOptions = {
-            method: "DELETE",
-            // headers:{
-            //     "Content-Type": "application/json"
-            // },
-            // body: JSONDelComment
-        }
-        fetch(`/kitten/comments/${delComment}`, delOptions)
-            .then(res => {
-                if(!res.ok){
-                    throw Error(res.statusText);
+        .addEventListener('click', (e) => {
+            let button = e.target;
+            if (button.tagName === 'BUTTON') {
+
+                let delComment = button.getAttribute("id")
+                console.log(delComment)
+                let delOptions = {
+                    method: "DELETE",
                 }
-                return res.json();
-            })
-            .then(res => {
-                let div = document.querySelector('.comments')
-                div.innerHTML = ""
-                let ul = document.createElement('ul')
-                div.appendChild(ul)
-                res.comments.forEach((comment, i) => {
-                    let newComment = document.createElement('li')
-                    newComment.setAttribute('class', i)
-                    let del = document.createElement('button');
-                    del.setAttribute('class', 'Delete');
-                    del.innerHTML = "Delete";
-                    newComment.innerHTML = comment
-                    ul.appendChild(newComment);
-                    newComment.appendChild(del);
-                })
-                document.getElementById("user-comment").value = '';
-            }).catch(err => {
-                console.log(err)
-            })
+                fetch(`/kitten/comments/${delComment}`, delOptions)
+                    .then(res => {
+                        if (!res.ok) {
+                            throw Error(res.statusText);
+                        }
+                        return res.json();
+                    })
+                    .then(res => {
+                        let div = document.querySelector('.comments')
+                        div.innerHTML = ""
+                        let ul = document.createElement('ul')
+                        div.appendChild(ul)
+                        res.comments.forEach((comment, i) => {
+                            let newComment = document.createElement('li')
+                            newComment.setAttribute('class', i)
+                            let del = document.createElement('button');
+                            del.setAttribute('class', 'Delete');
+                            del.innerHTML = "Delete";
+                            newComment.innerHTML = comment
+                            ul.appendChild(newComment);
+                            newComment.appendChild(del);
+                        })
+                        document.getElementById("user-comment").value = '';
+                    }).catch(err => {
+                        console.log(err)
+                    })
             }
         })
 
- });
+    function getTime() {
+        let time = new Date();
+        let day = function() {
+            switch(time.getDay()) {
+                case 0: return 'Sunday'
+                case 1: return 'Monday';
+                case 2: return 'Tuesday';
+                case 3: return 'Wednesday';
+                case 4: return 'Thursday';
+                case 5: return 'Friday';
+                case 6: return 'Saturday'
+            }
+        }    
+        let hour = time.getHours();
+        let minute = time.getMinutes();
+        return day() + " " + hour + ":" + minute 
+    }
+
+});
