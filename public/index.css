@@ -95,9 +95,31 @@ body::-webkit-scrollbar-thumb,
   flex-wrap: wrap;
 }
 
+#comment-label {
+  border: none;
+}
+
 .btn {
   padding: 5em, 1em;
   font-size: 1.5rem;
+  border:2px solid rgb(184, 134, 11, 0.7);
+  border-radius: 8%;
+
+}
+.btn:hover {
+background: rgb(218, 165, 32, 0.1);
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(106, 103, 103, 0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(106, 103, 103, 0.57);
+box-shadow: 5px 40px -10px rgba(106, 103, 103, 0.57);
+transition: all 0.4s ease 0s;
+}
+
+.btn:focus {
+  outline: none;
+}
+.btn:active {
+  background-color: darkgoldenrod;
 }
 
 #cc{
@@ -112,13 +134,13 @@ body::-webkit-scrollbar-thumb,
 
 .comments {
   z-index: 5;
-  /* border: solid grey 1px; */
+  border-radius: 7%;
+  border:3px solid rgb(184, 134, 11, 0.3) ;
   height: 300px;
   width: 80%;
   margin: 10px;
   padding: 5px;
   overflow: scroll;
-  scrollbar-color: white darkgoldenrod;
   background-color:rgb(184, 134, 11, 0.3);
   /* opacity: .2; */
 }
