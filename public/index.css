@@ -1,0 +1,125 @@
+* {
+  font-family: 'Oleo Script', cursive;
+}
+body{
+  background-color: burlywood;
+  margin: 0%;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.comment-container {
+  display: flex;
+  margin: 10px;
+}
+
+.delete-button {
+  margin-left: 15px;
+}
+
+.error {
+  margin-top: 20px;
+  color: red;
+}
+#cat-container{
+  width: 500px;
+  height: 550px;
+  border: 5px solide grey;
+  border-radius: 1%;
+  background-color: white;
+  box-shadow: 2px 3px #888888; */
+  /* display:  */
+}
+
+.cat-pic {
+  margin: 10px;
+  width: 480px;
+  max-height: 530px;
+  border-radius: 3%;
+  /* display: */
+  align-self: center;
+  opacity: .9;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-display {
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  margin: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-comment-container {
+  margin-right: 10px;
+}
+
+.btn {
+  padding: 5em, 1em;
+  font-size: 1.5rem;
+}
+
+#cc{
+  margin: 0;
+  padding: 0;
+  border-radius: 1%;
+}
+
+.user-comment {
+  padding: 5px;
+}
+
+.comments {
+  border: solid grey 1px;
+  height: 400px;
+  width: 80%;
+  margin: 10px;
+  padding: 5px;
+  /* overflow: scroll; */
+}
+
+#title {
+  z-index: 5;
+  color: white;
+  font-size: xx-large;
+  /* align-content: center; */
+  position: relative;
+  top: 10px;
+}
+
+#burger{
+  align-self: center;
+  margin-right: 15px;
+
+}
+
+#home-icon {
+  justify-items: start;
+  align-self: center;
+  margin-left: 15px;
+}
+
+.nav-bar {
+  display: flex;
+  width: 100%;
+  height: 75px;
+  background-color: darkgoldenrod;
+  opacity: .5;
+  justify-content: space-between;
+  align-content: center;
+}

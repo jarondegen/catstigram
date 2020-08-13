@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet"> -->
+    <title >Catstagram</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav-bar"> 
+        <div id="home-icon"><a></a><img src="./images/home.png"></div>
+        <div id="title">Catstigram</div>
+        <div id="burger"><img src="./images/burger.png"></div>
+      </div>
+    </header>
+    <section class="container">
+      <button class="btn" id="new-pic">Moawr!</button>
+      <div class="loader"><br></div>
+      <div class="error"></div>
+      <div id="cat-container">
+        <img class="cat-pic" id="catpic"src="" />
+      </div>
+      <br>
+        <div class="score-container">
+        <div class="score-display">
+          <span style="font-size: large;">likes</span>
+          <span class="score">0</span>
+        </div>
+        <div>
+          <button class="btn" id="upvote">purr</button>
+          <button class="btn" id="downvote"=>meow</button>
+        </div>
+      </div>
+      <form class="comment-form">
+        <div class="user-comment-container">
+          <label class="btn" for="user-comment">Comment:</label>
+          <input
+            required
+            name="user-comment"
+            id="user-comment"
+            class="user-comment btn"
+            placeholder=" Add a comment... "
+          />
+        </div>
+        <input class="btn" id="submit-button" type="submit" value="Submit" />
+      </form>
+      <div id="cc" class="comments btn"></div>
+      <br>
+    </section>
+
+    <script src="./events.js"></script>
+  </body>
+</html>
