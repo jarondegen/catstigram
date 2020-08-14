@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", (e) => {
+    document.querySelector('.score').innerHTML = randomNum();
     fetch("/kitten/image")
         .then(obj => {
             if (!obj.ok) {
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         .setAttribute('src', obj.src);
                     document.querySelector('.loader')
                         .innerHTML = "<br>";
-                    document.querySelector('.score').innerHTML = 0;
+                    document.querySelector('.score').innerHTML = randomNum();
                     document.getElementById("cc").innerHTML = ""
                 }).catch(error => {
                     error.json()
@@ -62,7 +63,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
                     return res.json()
                 })
                 .then(obj => {
-                    document.querySelector('.score').innerHTML = obj.score;
+                    let currScore = document.querySelector('.score').innerHTML;
+                    let parsed = parseInt(currScore) 
+                    document.querySelector('.score').innerHTML = parsed += 1;
                 })
 
         })
@@ -77,7 +80,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
                     return res.json();
                 })
                 .then(res => {
-                    document.querySelector('.score').innerHTML = res.score
+                    let currScore = document.querySelector('.score').innerHTML;
+                    let parsed = parseInt(currScore) 
+                    document.querySelector('.score').innerHTML = parsed -= 1;
                 })
         });
     
@@ -162,6 +167,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
             }
         })
 
+    function randomNum() {
+        return Math.floor(Math.random()*4000)
+    }
+    
     function getTime() {
         let time = new Date();
         let day = function() {

@@ -1,15 +1,13 @@
 * {
   font-family: 'Oleo Script', cursive;
 }
+
 body{
   background-color: burlywood;
   margin: 0%;
   color: white;
 }
-/* body::-webkit-scrollbar {
-  width: 11px;
-  scrollbar-color: white darkgoldenrod;
-} */
+
 body::-webkit-scrollbar,
 .comments::-webkit-scrollbar {
   width: 11px;
@@ -26,10 +24,11 @@ body::-webkit-scrollbar-thumb,
 .comments::-webkit-scrollbar-thumb {
   background-color: rgb(184, 134, 11, 0.3) ;
   border-radius: 6px;
-  /* border: 1px solid lightgrey; */
-  /* opacity: .5; */
 }
 
+body::-webkit-scrollbar-corner {
+  background-color: burlywood;
+  }
 
 .container {
   display: flex;
@@ -66,9 +65,7 @@ body::-webkit-scrollbar-thumb,
   width: 480px;
   max-height: 530px;
   border-radius: 3%;
-  /* display: */
-  align-self: center;
-  opacity: .9;
+  opacity: .8;
 }
 
 .score-container {
@@ -113,6 +110,7 @@ letter-spacing: 1px;
 -moz-box-shadow: 0px 5px 40px -10px rgba(106, 103, 103, 0.57);
 box-shadow: 5px 40px -10px rgba(106, 103, 103, 0.57);
 transition: all 0.4s ease 0s;
+cursor: pointer;
 }
 
 .btn:focus {
@@ -133,7 +131,6 @@ transition: all 0.4s ease 0s;
 }
 
 .comments {
-  z-index: 5;
   border-radius: 7%;
   border:3px solid rgb(184, 134, 11, 0.3) ;
   height: 300px;
@@ -142,7 +139,24 @@ transition: all 0.4s ease 0s;
   padding: 5px;
   overflow: scroll;
   background-color:rgb(184, 134, 11, 0.3);
-  /* opacity: .2; */
+  overflow-x: hidden;
+}
+
+.comments::-webkit-scrollbar-corner {
+  background-color: burlywood;
+  }
+
+#cat-stand {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  z-index: 5;
+  width: 100%;
+  height: 300px;
+  opacity: .2;
+
+
 }
 
 #title {
@@ -170,8 +184,7 @@ transition: all 0.4s ease 0s;
   display: flex;
   width: 100%;
   height: 75px;
-  background-color: darkgoldenrod;
-  opacity: .5;
+  background-color:rgb(184, 134, 11, 0.5);
   justify-content: space-between;
   align-content: center;
 }
@@ -185,8 +198,9 @@ transition: all 0.4s ease 0s;
 
 .foot {
   display: flex;
+  align-self: flex-end;
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: darkgoldenrod;
   opacity: .5;
   justify-content: center;
