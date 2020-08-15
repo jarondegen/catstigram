@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const axios = require("axios");
 const bodyParser = require("body-parser");
-const faker = require("faker")
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static("public"));
